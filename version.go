@@ -16,4 +16,4 @@ limitations under the License.
 
 package main
 
-const version = "0.1"
+const version = "0.2"

@@ -53,23 +53,23 @@ func new() *check {
 
 func (c *check) Run() {
 	t := time.Now()
-	thisMonthFirst := t.AddDate(0, 0, -1*(t.Day()-1)).Format("2006-01-02")
-	lastMonthFirst := t.AddDate(0, -1, -1*(t.Day()-1)).Format("2006-01-02")
+	today := t.Format("2006-01-02")
+	yesterday := t.AddDate(0, 0, -1).Format("2006-01-02")
 
 	if c.ec2 {
-		c.checkService("ec2", "EC2NotCovered", lastMonthFirst, thisMonthFirst)
+		c.checkService("ec2", "EC2NotCovered", yesterday, today)
 	}
 	if c.rds {
-		c.checkService("rds", "RDSNotCovered", lastMonthFirst, thisMonthFirst)
+		c.checkService("rds", "RDSNotCovered", yesterday, today)
 	}
 	if c.elasticache {
-		c.checkService("elasticache", "ElasticacheNotCovered", lastMonthFirst, thisMonthFirst)
+		c.checkService("elasticache", "ElasticacheNotCovered", yesterday, today)
 	}
 	if c.redshift {
-		c.checkService("redshift", "RedshiftNotCovered", lastMonthFirst, thisMonthFirst)
+		c.checkService("redshift", "RedshiftNotCovered", yesterday, today)
 	}
 	if c.elasticsearch {
-		c.checkService("elasticsearch", "ElasticsearchNotCovered", lastMonthFirst, thisMonthFirst)
+		c.checkService("elasticsearch", "ElasticsearchNotCovered", yesterday, today)
 	}
 }
 
